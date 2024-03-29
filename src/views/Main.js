@@ -1,33 +1,95 @@
 import Scroller from "@enact/sandstone/Scroller";
 import Item from "@enact/sandstone/Item";
-import streamingList from "../streaminList.json";
+import onairList from "./streaming/onairList.json";
+import cableList from "./streaming/cableList.json";
+import homeshoppingList from "./streaming/homeshoppingList.json";
 import Spottable from "@enact/spotlight/Spottable";
-import Spotlight from "@enact/spotlight";
+
+const M3U8_LIST = ["KBS1", "KBS2"];
+const OPEN_URL_LIST = [
+  "SBS",
+  "MBN",
+  "MBC",
+  "채널A",
+  "연합뉴스TV",
+  "EBS1",
+  "EBS2",
+  "YTN",
+  "YTN2",
+];
 
 const Main = () => {
-  const onSpotlightUp = (index) => {
-    console.log(index);
+  const onSpotlightUp = (index) => {};
+
+  const onSpotlightDown = (index) => {};
+
+  const openURL = (a) => {
+    window.open(a, "_blank");
+    return !1;
   };
 
-  const onSpotlightDown = (index) => {
-    console.log(index === streamingList.length - 1);
-    const a = document.getElementsByClassName("tv_0");
-    console.log(a);
-    Spotlight.focus(`.tv_0`);
-    if (index === streamingList.length - 1) {
-      Spotlight.focus(`tv_0`);
+  const onClickHomeshopping = async (index) => {
+    const { name, url } = homeshoppingList[index];
+    openURL(url);
+  };
+
+  const downloadM3U8 = (url) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        const b = res.channel_item[0].service_url;
+        openURL(b);
+      });
+  };
+
+  const onClickOnair = async (index) => {
+    const { name, url } = onairList[index];
+    console.log(`${name} :: ${url}`);
+    if (M3U8_LIST.includes(name)) {
+      downloadM3U8(url);
+    } else if (OPEN_URL_LIST.includes(name)) {
+      openURL(url);
+    }
+  };
+
+  const onClickCable = async (index) => {
+    const { name, url } = cableList[index];
+    console.log(`${name} :: ${url}`);
+    if (M3U8_LIST.includes(name)) {
+      downloadM3U8(url);
+    } else if (OPEN_URL_LIST.includes(name)) {
+      openURL(url);
     }
   };
 
   return (
     <Scroller style={{ backgroundColor: "black" }}>
-      {streamingList.map((streaming, index) => (
+      {onairList.map((streaming, index) => (
         <Item
-          itemID={`tv_${index}`}
-          classID={`tv_${index}`}
-          className={`tv_${index}`}
+          key={`onair_${index}`}
           onSpotlightDown={() => onSpotlightDown(index)}
           onSpotlightUp={() => onSpotlightUp(index)}
+          onClick={() => onClickOnair(index)}
+        >
+          {streaming.name}
+        </Item>
+      ))}
+      {cableList.map((streaming, index) => (
+        <Item
+          key={`cable_${index}`}
+          onSpotlightDown={() => onSpotlightDown(index)}
+          onSpotlightUp={() => onSpotlightUp(index)}
+          onClick={() => onClickCable(index)}
+        >
+          {streaming.name}
+        </Item>
+      ))}
+      {homeshoppingList.map((streaming, index) => (
+        <Item
+          key={`homeshopping_${index}`}
+          onSpotlightDown={() => onSpotlightDown(index)}
+          onSpotlightUp={() => onSpotlightUp(index)}
+          onClick={() => onClickHomeshopping(index)}
         >
           {streaming.name}
         </Item>

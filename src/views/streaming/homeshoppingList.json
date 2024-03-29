@@ -1,0 +1,30 @@
+[
+  {
+    "name": "GS마이샵",
+    "url": "http://gstv-myshop.gsshop.com/myshop_hd/_definst_/myshop_hd.stream/playlist.m3u8"
+  },
+  {
+    "name": "현대홈쇼핑+샵",
+    "url": "https://dtvstreaming.hyundaihmall.com/newcjp3/_definst_/newcjpstream.smil/playlist.m3u8"
+  },
+  {
+    "name": "CJ온스타일+",
+    "url": "http://live-ch2.cjmall.net/cjosplus/_definst_/live2/playlist.m3u8"
+  },
+  {
+    "name": "롯데홈쇼핑",
+    "url": "http://mohlslive.lotteimall.com/live/livestream/lotteimalllive_mp4.m3u8"
+  },
+  {
+    "name": "공영쇼핑",
+    "url": "http://etv.publichs.com/live5.stream/playlist.m3u8"
+  },
+  {
+    "name": "K쇼핑",
+    "url": "https://livetv.kshop.co.kr/klive/_definst_/smil:klive.smil/playlist.m3u8"
+  },
+  {
+    "name": "홈앤쇼핑",
+    "url": "https://s30.qtcdn.co.kr/media/liveM3U8/idx/484074138/enc/1790577012/playlist.m3u8"
+  }
+]
