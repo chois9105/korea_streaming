@@ -5,7 +5,7 @@
   "author": "",
   "main": "src/index.js",
   "scripts": {
-    "serve": "enact serve --port 3002",
+    "serve": "enact serve --port 3003",
     "pack": "enact pack",
     "pack-p": "enact pack -p",
     "watch": "enact pack --watch",
