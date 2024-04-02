@@ -4,6 +4,7 @@ import onairList from "./streaming/onairList.json";
 import cableList from "./streaming/cableList.json";
 import homeshoppingList from "./streaming/homeshoppingList.json";
 import Spottable from "@enact/spotlight/Spottable";
+import { useEffect, useRef } from "react";
 
 const M3U8_LIST = ["KBS1", "KBS2"];
 const OPEN_URL_LIST = [
@@ -19,6 +20,22 @@ const OPEN_URL_LIST = [
 ];
 
 const Main = () => {
+  const streamingItemList = useRef([]);
+
+  useEffect(() => {
+    const onairItemList = document.getElementsByClassName("onairItem");
+    const cableItemList = document.getElementsByClassName("cableItem");
+    const homeshoppingItemList =
+      document.getElementsByClassName("homeshoppingItem");
+
+    streamingItemList.current = [
+      ...onairItemList,
+      ...cableItemList,
+      ...homeshoppingItemList,
+    ];
+    streamingItemList.current[0].focus();
+  }, []);
+
   const onSpotlightUp = (index) => {};
 
   const onSpotlightDown = (index) => {};
@@ -44,7 +61,6 @@ const Main = () => {
 
   const onClickOnair = async (index) => {
     const { name, url } = onairList[index];
-    console.log(`${name} :: ${url}`);
     if (M3U8_LIST.includes(name)) {
       downloadM3U8(url);
     } else if (OPEN_URL_LIST.includes(name)) {
@@ -54,7 +70,6 @@ const Main = () => {
 
   const onClickCable = async (index) => {
     const { name, url } = cableList[index];
-    console.log(`${name} :: ${url}`);
     if (M3U8_LIST.includes(name)) {
       downloadM3U8(url);
     } else if (OPEN_URL_LIST.includes(name)) {
@@ -72,6 +87,7 @@ const Main = () => {
               onSpotlightDown={() => onSpotlightDown(index)}
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickOnair(index)}
+              className="onairItem"
             >
               {streaming.name}
             </Item>
@@ -86,6 +102,7 @@ const Main = () => {
               onSpotlightDown={() => onSpotlightDown(index)}
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickCable(index)}
+              className="cableItem"
             >
               {streaming.name}
             </Item>
@@ -100,6 +117,7 @@ const Main = () => {
               onSpotlightDown={() => onSpotlightDown(index)}
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickHomeshopping(index)}
+              className="homeshoppingItem"
             >
               {streaming.name}
             </Item>
