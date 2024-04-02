@@ -17,6 +17,8 @@ const OPEN_URL_LIST = [
   "EBS2",
   "YTN",
   "YTN2",
+  "TV조선",
+  "TV조선2",
 ];
 
 const Main = () => {
