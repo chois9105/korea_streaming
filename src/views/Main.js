@@ -181,7 +181,7 @@ const Main = () => {
     >
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {onairList.map((streaming, index) => (
-          <SpottableOnairComponent
+          <OnairComponent
             key={`onair_${index}`}
             spotlightId={`onair_${index}`}
             name={streaming.name}
@@ -190,7 +190,7 @@ const Main = () => {
       </div>
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {cableList.map((streaming, index) => (
-          <SpottableCableComponent
+          <CableComponent
             key={`cable_${index}`}
             spotlightId={`cable_${index}`}
             name={streaming.name}
@@ -199,7 +199,7 @@ const Main = () => {
       </div>
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {homeshoppingList.map((streaming, index) => (
-          <SpottableHomeshoppingComponent
+          <HomeshoppingComponent
             key={`homeshopping_${index}`}
             spotlightId={`homeshopping_${index}`}
             name={streaming.name}
