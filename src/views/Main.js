@@ -37,7 +37,7 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
-    Spotlight.focus(".onairItem");
+    Spotlight.focus(".onairItem_1");
   }, []);
 
   const onSpotlightUp = (index) => {};
@@ -91,7 +91,7 @@ const Main = () => {
               onSpotlightDown={() => onSpotlightDown(index)}
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickOnair(index)}
-              className="onairItem"
+              className={`onairItem onairItem_${index}`}
             >
               {streaming.name}
             </Item>
