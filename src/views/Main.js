@@ -1,4 +1,3 @@
-import React from "react";
 import Item from "@enact/sandstone/Item";
 import onairList from "./streaming/onairList.json";
 import cableList from "./streaming/cableList.json";
@@ -22,104 +21,26 @@ const OPEN_URL_LIST = [
   "TV조선2",
 ];
 
-const OnairComponent = ({ index, name }) => {
-  const openURL = (a) => {
-    window.open(a, "_blank");
-    return !1;
-  };
-
-  const downloadM3U8 = (url) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => {
-        const b = res.channel_item[0].service_url;
-        openURL(b);
-      });
-  };
-
-  const onClickOnair = async (index) => {
-    const { name, url } = onairList[index];
-    if (M3U8_LIST.includes(name)) {
-      downloadM3U8(url);
-    } else if (OPEN_URL_LIST.includes(name)) {
-      openURL(url);
-    }
-  };
-
-  return (
-    <Item onClick={() => onClickOnair(index)} className="onairItem">
-      {name}
-    </Item>
-  );
-};
-
-const CableComponent = ({ index, name }) => {
-  const openURL = (a) => {
-    window.open(a, "_blank");
-    return !1;
-  };
-
-  const downloadM3U8 = (url) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => {
-        const b = res.channel_item[0].service_url;
-        openURL(b);
-      });
-  };
-
-  const onClickCable = async (index) => {
-    const { name, url } = cableList[index];
-    if (M3U8_LIST.includes(name)) {
-      downloadM3U8(url);
-    } else if (OPEN_URL_LIST.includes(name)) {
-      openURL(url);
-    }
-  };
-
-  return (
-    <Item onClick={() => onClickCable(index)} className="cableItem">
-      {name}
-    </Item>
-  );
-};
-const HomeshoppingComponent = ({ index, name }) => {
-  const openURL = (a) => {
-    window.open(a, "_blank");
-    return !1;
-  };
-
-  const downloadM3U8 = (url) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => {
-        const b = res.channel_item[0].service_url;
-        openURL(b);
-      });
-  };
-
-  const onClickHomeshopping = async (index) => {
-    const { name, url } = homeshoppingList[index];
-    openURL(url);
-  };
-
+const AA = ({ index, onSpotlightDown, onSpotlightUp, onClick, name }) => {
   return (
     <Item
-      onClick={() => onClickHomeshopping(index)}
-      className="homeshoppigItem"
+      onSpotlightDown={() => onSpotlightDown(index)}
+      onSpotlightUp={() => onSpotlightUp(index)}
+      onClick={() => onClick(index)}
+      className="onairItem"
     >
       {name}
     </Item>
   );
 };
-const SpottableOnairComponent = Spottable(OnairComponent);
-const SpottableCableComponent = Spottable(CableComponent);
-const SpottableHomeshoppingComponent = Spottable(HomeshoppingComponent);
+
+const SpottableAAComponent = Spottable(AA);
+
 const Main = () => {
   const streamingItemList = useRef([]);
-  Spotlight.focus(".homeshoppigItem", {
-    enterTo: "last-focused",
-    toOuterContainer: false,
+  Spotlight.focus(".onairItem", {
+    enterTo: "default-element",
+    toOuterContainer: true,
   });
 
   useEffect(() => {
@@ -134,15 +55,7 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
-    Spotlight.focus(".homeshoppigItem", {
-      enterTo: "last-focused",
-      toOuterContainer: false,
-    });
   }, []);
-
-  const onSpotlightUp = (index) => {};
-
-  const onSpotlightDown = (index) => {};
 
   const openURL = (a) => {
     window.open(a, "_blank");
@@ -188,32 +101,38 @@ const Main = () => {
     >
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {onairList.map((streaming, index) => (
-          <OnairComponent
+          <Item
             key={`onair_${index}`}
             spotlightId={`onair_${index}`}
-            className={`onair onair_${index}`}
-            name={streaming.name}
-          />
+            onClick={() => onClickOnair(index)}
+            className="onairItem"
+          >
+            {streaming.name}
+          </Item>
         ))}
       </div>
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {cableList.map((streaming, index) => (
-          <CableComponent
+          <Item
             key={`cable_${index}`}
             spotlightId={`cable_${index}`}
-            className={`cable cable_${index}`}
-            name={streaming.name}
-          />
+            onClick={() => onClickCable(index)}
+            className="cableItem"
+          >
+            {streaming.name}
+          </Item>
         ))}
       </div>
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {homeshoppingList.map((streaming, index) => (
-          <HomeshoppingComponent
+          <Item
             key={`homeshopping_${index}`}
             spotlightId={`homeshopping_${index}`}
-            className={`cable homeshopping_${index}`}
-            name={streaming.name}
-          />
+            onClick={() => onClickHomeshopping(index)}
+            className="homeshoppingItem"
+          >
+            {streaming.name}
+          </Item>
         ))}
       </div>
     </div>
