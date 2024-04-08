@@ -36,6 +36,7 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
+    Spotlight.focus(streamingItemList.current[0]);
   }, []);
 
   const onSpotlightUp = (index) => {};
