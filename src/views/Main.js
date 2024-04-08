@@ -61,7 +61,6 @@ const Main = () => {
     streamingItemList.current[0].focus();
     Spotlight.focus("onair_1", {
       enterTo: "default-element",
-      toOuterContainer: true,
     });
   }, []);
 
