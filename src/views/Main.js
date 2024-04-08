@@ -26,7 +26,7 @@ const OnAirComponent = ({
   index,
   onSpotlightDown,
   onSpotlightUp,
-  onCickOnair,
+  onClickOnair,
   streaming,
 }) => {
   return (
@@ -113,7 +113,7 @@ const Main = () => {
               index={index}
               onSpotlightDown={onSpotlightDown}
               onSpotlightUp={onSpotlightDown}
-              onCickOnair={onClickOnair}
+              onClickOnair={onClickOnair}
               streaming={streaming}
             />
           ))}
