@@ -56,10 +56,79 @@ const OnairComponent = React.memo(
   () => true
 );
 
-const SpottableOnairComponent = Spottable(OnairComponent);
+const CableComponent = React.memo(
+  ({ index, name }) => {
+    const openURL = (a) => {
+      window.open(a, "_blank");
+      return !1;
+    };
 
+    const downloadM3U8 = (url) => {
+      fetch(url)
+        .then((res) => res.json())
+        .then((res) => {
+          const b = res.channel_item[0].service_url;
+          openURL(b);
+        });
+    };
+
+    const onClickCable = async (index) => {
+      const { name, url } = cableList[index];
+      if (M3U8_LIST.includes(name)) {
+        downloadM3U8(url);
+      } else if (OPEN_URL_LIST.includes(name)) {
+        openURL(url);
+      }
+    };
+
+    return (
+      <Item onClick={() => onClickCable(index)} className="onairItem">
+        {name}
+      </Item>
+    );
+  },
+  () => true
+);
+
+const HomeshoppingComponent = React.memo(
+  ({ index, name }) => {
+    const openURL = (a) => {
+      window.open(a, "_blank");
+      return !1;
+    };
+
+    const downloadM3U8 = (url) => {
+      fetch(url)
+        .then((res) => res.json())
+        .then((res) => {
+          const b = res.channel_item[0].service_url;
+          openURL(b);
+        });
+    };
+
+    const onClickHomeshopping = async (index) => {
+      const { name, url } = homeshoppingList[index];
+      openURL(url);
+    };
+
+    return (
+      <Item onClick={() => onClickHomeshopping(index)} className="onairItem">
+        {name}
+      </Item>
+    );
+  },
+  () => true
+);
+
+const SpottableOnairComponent = Spottable(OnairComponent);
+const SpottableCableComponent = Spottable(CableComponent);
+const SpottableHomeshoppingComponent = Spottable(HomeshoppingComponent);
 const Main = () => {
   const streamingItemList = useRef([]);
+  Spotlight.focus("onair_0", {
+    enterTo: "last-focused",
+    toOuterContainer: false,
+  });
 
   useEffect(() => {
     const onairItemList = document.getElementsByClassName("onairItem");
@@ -73,10 +142,6 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
-    Spotlight.focus("onair_1", {
-      enterTo: "last-focused",
-      toOuterContainer: true,
-    });
   }, []);
 
   const onSpotlightUp = (index) => {};
@@ -136,30 +201,20 @@ const Main = () => {
       </div>
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {cableList.map((streaming, index) => (
-          <Item
+          <SpottableCableComponent
             key={`cable_${index}`}
             spotlightId={`cable_${index}`}
-            onSpotlightDown={() => onSpotlightDown(index)}
-            onSpotlightUp={() => onSpotlightUp(index)}
-            onClick={() => onClickCable(index)}
-            className="cableItem"
-          >
-            {streaming.name}
-          </Item>
+            name={streaming.name}
+          />
         ))}
       </div>
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {homeshoppingList.map((streaming, index) => (
-          <Item
+          <SpottableHomeshoppingComponent
             key={`homeshopping_${index}`}
             spotlightId={`homeshopping_${index}`}
-            onSpotlightDown={() => onSpotlightDown(index)}
-            onSpotlightUp={() => onSpotlightUp(index)}
-            onClick={() => onClickHomeshopping(index)}
-            className="homeshoppingItem"
-          >
-            {streaming.name}
-          </Item>
+            name={streaming.name}
+          />
         ))}
       </div>
     </div>
