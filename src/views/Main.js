@@ -4,7 +4,7 @@ import onairList from "./streaming/onairList.json";
 import cableList from "./streaming/cableList.json";
 import homeshoppingList from "./streaming/homeshoppingList.json";
 import Spottable from "@enact/spotlight/Spottable";
-import Spotlight from "@enact/Spotlight";
+import Spotlight from "@enact/spotlight";
 import { useEffect, useRef } from "react";
 
 const M3U8_LIST = ["KBS1", "KBS2"];
