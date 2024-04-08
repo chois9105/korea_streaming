@@ -22,6 +22,28 @@ const OPEN_URL_LIST = [
   "TV조선2",
 ];
 
+const OnAirComponent = ({
+  index,
+  onSpotlightDown,
+  onSpotlightUp,
+  onCickOnair,
+  streaming,
+}) => {
+  return (
+    <Item
+      key={`onair_${index}`}
+      onSpotlightDown={() => onSpotlightDown(index)}
+      onSpotlightUp={() => onSpotlightUp(index)}
+      onClick={() => onClickOnair(index)}
+      className={`onairItem onairItem_${index}`}
+    >
+      {streaming.name}
+    </Item>
+  );
+};
+
+const SpottableOnAirComponent = Spottable(OnAirComponent);
+
 const Main = () => {
   const streamingItemList = useRef([]);
 
@@ -37,7 +59,7 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
-    Spotlight.focus(".onairItem_1");
+    Spotlight.focus(".onair_1");
   }, []);
 
   const onSpotlightUp = (index) => {};
@@ -86,15 +108,14 @@ const Main = () => {
       <div class="column" style={{ flex: 1 }}>
         <Scroller style={{ backgroundColor: "black" }}>
           {onairList.map((streaming, index) => (
-            <Item
-              key={`onair_${index}`}
-              onSpotlightDown={() => onSpotlightDown(index)}
-              onSpotlightUp={() => onSpotlightUp(index)}
-              onClick={() => onClickOnair(index)}
-              className={`onairItem onairItem_${index}`}
-            >
-              {streaming.name}
-            </Item>
+            <SpottableOnAirComponent
+              spotlightId={`onair_${index}`}
+              index={index}
+              onSpotlightDown={onSpotlightDown}
+              onSpotlightUp={onSpotlightDown}
+              onCickOnair={onClickOnair}
+              streaming={streaming}
+            />
           ))}
         </Scroller>
       </div>
