@@ -22,104 +22,93 @@ const OPEN_URL_LIST = [
   "TV조선2",
 ];
 
-const OnairComponent = React.memo(
-  ({ index, name }) => {
-    const openURL = (a) => {
-      window.open(a, "_blank");
-      return !1;
-    };
+const OnairComponent = ({ index, name }) => {
+  const openURL = (a) => {
+    window.open(a, "_blank");
+    return !1;
+  };
 
-    const downloadM3U8 = (url) => {
-      fetch(url)
-        .then((res) => res.json())
-        .then((res) => {
-          const b = res.channel_item[0].service_url;
-          openURL(b);
-        });
-    };
+  const downloadM3U8 = (url) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        const b = res.channel_item[0].service_url;
+        openURL(b);
+      });
+  };
 
-    const onClickOnair = async (index) => {
-      const { name, url } = onairList[index];
-      if (M3U8_LIST.includes(name)) {
-        downloadM3U8(url);
-      } else if (OPEN_URL_LIST.includes(name)) {
-        openURL(url);
-      }
-    };
-
-    return (
-      <Item onClick={() => onClickOnair(index)} className="onairItem">
-        {name}
-      </Item>
-    );
-  },
-  () => true
-);
-
-const CableComponent = React.memo(
-  ({ index, name }) => {
-    const openURL = (a) => {
-      window.open(a, "_blank");
-      return !1;
-    };
-
-    const downloadM3U8 = (url) => {
-      fetch(url)
-        .then((res) => res.json())
-        .then((res) => {
-          const b = res.channel_item[0].service_url;
-          openURL(b);
-        });
-    };
-
-    const onClickCable = async (index) => {
-      const { name, url } = cableList[index];
-      if (M3U8_LIST.includes(name)) {
-        downloadM3U8(url);
-      } else if (OPEN_URL_LIST.includes(name)) {
-        openURL(url);
-      }
-    };
-
-    return (
-      <Item onClick={() => onClickCable(index)} className="onairItem">
-        {name}
-      </Item>
-    );
-  },
-  () => true
-);
-
-const HomeshoppingComponent = React.memo(
-  ({ index, name }) => {
-    const openURL = (a) => {
-      window.open(a, "_blank");
-      return !1;
-    };
-
-    const downloadM3U8 = (url) => {
-      fetch(url)
-        .then((res) => res.json())
-        .then((res) => {
-          const b = res.channel_item[0].service_url;
-          openURL(b);
-        });
-    };
-
-    const onClickHomeshopping = async (index) => {
-      const { name, url } = homeshoppingList[index];
+  const onClickOnair = async (index) => {
+    const { name, url } = onairList[index];
+    if (M3U8_LIST.includes(name)) {
+      downloadM3U8(url);
+    } else if (OPEN_URL_LIST.includes(name)) {
       openURL(url);
-    };
+    }
+  };
 
-    return (
-      <Item onClick={() => onClickHomeshopping(index)} className="onairItem">
-        {name}
-      </Item>
-    );
-  },
-  () => true
-);
+  return (
+    <Item onClick={() => onClickOnair(index)} className="onairItem">
+      {name}
+    </Item>
+  );
+};
 
+const CableComponent = ({ index, name }) => {
+  const openURL = (a) => {
+    window.open(a, "_blank");
+    return !1;
+  };
+
+  const downloadM3U8 = (url) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        const b = res.channel_item[0].service_url;
+        openURL(b);
+      });
+  };
+
+  const onClickCable = async (index) => {
+    const { name, url } = cableList[index];
+    if (M3U8_LIST.includes(name)) {
+      downloadM3U8(url);
+    } else if (OPEN_URL_LIST.includes(name)) {
+      openURL(url);
+    }
+  };
+
+  return (
+    <Item onClick={() => onClickCable(index)} className="onairItem">
+      {name}
+    </Item>
+  );
+};
+const HomeshoppingComponent = ({ index, name }) => {
+  const openURL = (a) => {
+    window.open(a, "_blank");
+    return !1;
+  };
+
+  const downloadM3U8 = (url) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        const b = res.channel_item[0].service_url;
+        openURL(b);
+      });
+  };
+
+  const onClickHomeshopping = async (index) => {
+    const { name, url } = homeshoppingList[index];
+    openURL(url);
+  };
+
+  return (
+    <Item onClick={() => onClickHomeshopping(index)} className="onairItem">
+      {name}
+    </Item>
+  );
+};
 const SpottableOnairComponent = Spottable(OnairComponent);
 const SpottableCableComponent = Spottable(CableComponent);
 const SpottableHomeshoppingComponent = Spottable(HomeshoppingComponent);
