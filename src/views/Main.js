@@ -78,7 +78,7 @@ const CableComponent = ({ index, name }) => {
   };
 
   return (
-    <Item onClick={() => onClickCable(index)} className="onairItem">
+    <Item onClick={() => onClickCable(index)} className="cableItem">
       {name}
     </Item>
   );
@@ -104,7 +104,10 @@ const HomeshoppingComponent = ({ index, name }) => {
   };
 
   return (
-    <Item onClick={() => onClickHomeshopping(index)} className="onairItem">
+    <Item
+      onClick={() => onClickHomeshopping(index)}
+      className="homeshoppigItem"
+    >
       {name}
     </Item>
   );
@@ -114,7 +117,7 @@ const SpottableCableComponent = Spottable(CableComponent);
 const SpottableHomeshoppingComponent = Spottable(HomeshoppingComponent);
 const Main = () => {
   const streamingItemList = useRef([]);
-  Spotlight.focus("onair_0", {
+  Spotlight.focus(".homeshoppigItem", {
     enterTo: "last-focused",
     toOuterContainer: false,
   });
@@ -131,6 +134,10 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
+    Spotlight.focus(".homeshoppigItem", {
+      enterTo: "last-focused",
+      toOuterContainer: false,
+    });
   }, []);
 
   const onSpotlightUp = (index) => {};
@@ -184,6 +191,7 @@ const Main = () => {
           <OnairComponent
             key={`onair_${index}`}
             spotlightId={`onair_${index}`}
+            className={`onair onair_${index}`}
             name={streaming.name}
           />
         ))}
@@ -193,6 +201,7 @@ const Main = () => {
           <CableComponent
             key={`cable_${index}`}
             spotlightId={`cable_${index}`}
+            className={`cable cable_${index}`}
             name={streaming.name}
           />
         ))}
@@ -202,6 +211,7 @@ const Main = () => {
           <HomeshoppingComponent
             key={`homeshopping_${index}`}
             spotlightId={`homeshopping_${index}`}
+            className={`cable homeshopping_${index}`}
             name={streaming.name}
           />
         ))}
