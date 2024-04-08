@@ -1,5 +1,4 @@
 import Scroller from "@enact/sandstone/Scroller";
-import React from "react";
 import Item from "@enact/sandstone/Item";
 import onairList from "./streaming/onairList.json";
 import cableList from "./streaming/cableList.json";
@@ -23,63 +22,6 @@ const OPEN_URL_LIST = [
   "TV조선2",
 ];
 
-const OnAirComponent = React.memo(
-  ({ index, onSpotlightDown, onSpotlightUp, onClick, streaming }) => {
-    return (
-      <Item
-        key={`onair_${index}`}
-        onSpotlightDown={() => onSpotlightDown(index)}
-        onSpotlightUp={() => onSpotlightUp(index)}
-        onClick={() => onClick(index)}
-        className={`onairItem onairItem_${index}`}
-      >
-        {streaming.name}
-      </Item>
-    );
-  },
-  () => true
-);
-
-const CableComponent = React.memo(
-  ({ index, onSpotlightDown, onSpotlightUp, onClick, streaming }) => {
-    return (
-      <Item
-        key={`cable_${index}`}
-        onSpotlightDown={() => onSpotlightDown(index)}
-        onSpotlightUp={() => onSpotlightUp(index)}
-        onClick={() => onClick(index)}
-        className={`cableItem cableItem_${index}`}
-      >
-        {streaming.name}
-      </Item>
-    );
-  },
-  () => true
-);
-
-const HomeshoppingComponent = React.memo(
-  ({ index, onSpotlightDown, onSpotlightUp, onClick, streaming }) => {
-    return (
-      <Item
-        key={`homeshopping_${index}`}
-        onSpotlightDown={() => onSpotlightDown(index)}
-        onSpotlightUp={() => onSpotlightUp(index)}
-        onClick={() => onClick(index)}
-        className={`homeshoppingItem homeshoppingItem_${index}`}
-      >
-        {streaming.name}
-      </Item>
-    );
-  },
-  () => true
-);
-
-const SpottableOnAirComponent = Spottable(React.memo(OnAirComponent));
-const SpottableCableComponent = Spottable(React.memo(CableComponent));
-const SpottableHomeshoppingComponent = Spottable(
-  React.memo(HomeshoppingComponent)
-);
-
 const Main = () => {
   const streamingItemList = useRef([]);
 
@@ -95,9 +37,7 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
-    Spotlight.focus("onair_1", {
-      enterTo: "default-element",
-    });
+    Spotlight.focus("onair_1", { enterTo: "default-element" });
   }, []);
 
   const onSpotlightUp = (index) => {};
@@ -146,42 +86,48 @@ const Main = () => {
       <div class="column" style={{ flex: 1 }}>
         <Scroller style={{ backgroundColor: "black" }}>
           {onairList.map((streaming, index) => (
-            <SpottableOnAirComponent
+            <Item
+              key={`onair_${index}`}
               spotlightId={`onair_${index}`}
-              index={index}
-              onSpotlightDown={onSpotlightDown}
-              onSpotlightUp={onSpotlightDown}
-              onClick={onClickOnair}
-              streaming={streaming}
-            />
+              onSpotlightDown={() => onSpotlightDown(index)}
+              onSpotlightUp={() => onSpotlightUp(index)}
+              onClick={() => onClickOnair(index)}
+              className="onairItem"
+            >
+              {streaming.name}
+            </Item>
           ))}
         </Scroller>
       </div>
       <div class="column" style={{ flex: 1 }}>
         <Scroller style={{ backgroundColor: "black" }}>
           {cableList.map((streaming, index) => (
-            <SpottableCableComponent
+            <Item
+              key={`cable_${index}`}
               spotlightId={`cable_${index}`}
               onSpotlightDown={() => onSpotlightDown(index)}
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickCable(index)}
               className="cableItem"
-              streaming={streaming}
-            />
+            >
+              {streaming.name}
+            </Item>
           ))}
         </Scroller>
       </div>
       <div class="column" style={{ flex: 1 }}>
         <Scroller style={{ backgroundColor: "black" }}>
           {homeshoppingList.map((streaming, index) => (
-            <SpottableHomeshoppingComponent
+            <Item
+              key={`homeshopping_${index}`}
               spotlightId={`homeshopping_${index}`}
               onSpotlightDown={() => onSpotlightDown(index)}
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickHomeshopping(index)}
               className="homeshoppingItem"
-              streaming={streaming}
-            />
+            >
+              {streaming.name}
+            </Item>
           ))}
         </Scroller>
       </div>
