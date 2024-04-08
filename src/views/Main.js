@@ -37,7 +37,7 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
-    Spotlight.focus("onair_0");
+    Spotlight.focus(".onair_0");
   }, []);
 
   const onSpotlightUp = (index) => {};
