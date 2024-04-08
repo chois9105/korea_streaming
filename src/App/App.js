@@ -1,5 +1,4 @@
 import kind from "@enact/core/kind";
-import ThemeDecorator from "@enact/sandstone/ThemeDecorator";
 import "./attachErrorHandler";
 import Main from "../views/Main";
 import css from "./App.module.less";
@@ -12,5 +11,4 @@ const App = kind({
   },
   render: () => <Main />,
 });
-
-export default ThemeDecorator(App);
+export default SpotlightRootDecorator(App);
