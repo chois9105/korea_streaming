@@ -81,8 +81,11 @@ const Main = () => {
   };
 
   return (
-    <div class="container" style={{ display: "flex", height: "100vh" }}>
-      <div class="column" style={{ flex: 1 }}>
+    <div
+      class="container"
+      style={{ display: "flex", height: "100vh", backgroundColor: "black" }}
+    >
+      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {onairList.map((streaming, index) => (
           <Item
             key={`onair_${index}`}
@@ -96,7 +99,7 @@ const Main = () => {
           </Item>
         ))}
       </div>
-      <div class="column" style={{ flex: 1 }}>
+      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {cableList.map((streaming, index) => (
           <Item
             key={`cable_${index}`}
@@ -110,7 +113,7 @@ const Main = () => {
           </Item>
         ))}
       </div>
-      <div class="column" style={{ flex: 1 }}>
+      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {homeshoppingList.map((streaming, index) => (
           <Item
             key={`homeshopping_${index}`}
