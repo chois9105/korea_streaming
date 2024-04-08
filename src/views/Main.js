@@ -26,7 +26,7 @@ const OnAirComponent = ({
   index,
   onSpotlightDown,
   onSpotlightUp,
-  onClickOnair,
+  onClick,
   streaming,
 }) => {
   return (
@@ -34,7 +34,7 @@ const OnAirComponent = ({
       key={`onair_${index}`}
       onSpotlightDown={() => onSpotlightDown(index)}
       onSpotlightUp={() => onSpotlightUp(index)}
-      onClick={() => onClickOnair(index)}
+      onClick={() => onClick(index)}
       className={`onairItem onairItem_${index}`}
     >
       {streaming.name}
@@ -42,7 +42,49 @@ const OnAirComponent = ({
   );
 };
 
+const CableComponent = ({
+  index,
+  onSpotlightDown,
+  onSpotlightUp,
+  onClick,
+  streaming,
+}) => {
+  return (
+    <Item
+      key={`cable_${index}`}
+      onSpotlightDown={() => onSpotlightDown(index)}
+      onSpotlightUp={() => onSpotlightUp(index)}
+      onClick={() => onClick(index)}
+      className={`cableItem cableItem_${index}`}
+    >
+      {streaming.name}
+    </Item>
+  );
+};
+
+const HomeshoppingComponent = ({
+  index,
+  onSpotlightDown,
+  onSpotlightUp,
+  onClick,
+  streaming,
+}) => {
+  return (
+    <Item
+      key={`homeshopping_${index}`}
+      onSpotlightDown={() => onSpotlightDown(index)}
+      onSpotlightUp={() => onSpotlightUp(index)}
+      onClick={() => onClick(index)}
+      className={`homeshoppingItem homeshoppingItem_${index}`}
+    >
+      {streaming.name}
+    </Item>
+  );
+};
+
 const SpottableOnAirComponent = Spottable(OnAirComponent);
+const SpottableCableComponent = Spottable(CableComponent);
+const SpottableHomeshoppingComponent = Spottable(HomeshoppingComponent);
 
 const Main = () => {
   const streamingItemList = useRef([]);
@@ -115,7 +157,7 @@ const Main = () => {
               index={index}
               onSpotlightDown={onSpotlightDown}
               onSpotlightUp={onSpotlightDown}
-              onClickOnair={onClickOnair}
+              onClick={onClickOnair}
               streaming={streaming}
             />
           ))}
@@ -124,30 +166,30 @@ const Main = () => {
       <div class="column" style={{ flex: 1 }}>
         <Scroller style={{ backgroundColor: "black" }}>
           {cableList.map((streaming, index) => (
-            <Item
-              key={`cable_${index}`}
+            <SpottableCableComponent
+              spotlightId={`cable_${index}`}
               onSpotlightDown={() => onSpotlightDown(index)}
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickCable(index)}
               className="cableItem"
             >
               {streaming.name}
-            </Item>
+            </SpottableCableComponent>
           ))}
         </Scroller>
       </div>
       <div class="column" style={{ flex: 1 }}>
         <Scroller style={{ backgroundColor: "black" }}>
           {homeshoppingList.map((streaming, index) => (
-            <Item
-              key={`homeshopping_${index}`}
+            <SpottableHomeshoppingComponent
+              spotlightId={`homeshopping_${index}`}
               onSpotlightDown={() => onSpotlightDown(index)}
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickHomeshopping(index)}
               className="homeshoppingItem"
             >
               {streaming.name}
-            </Item>
+            </SpottableHomeshoppingComponent>
           ))}
         </Scroller>
       </div>
