@@ -1,4 +1,5 @@
 import Scroller from "@enact/sandstone/Scroller";
+import React from "react";
 import Item from "@enact/sandstone/Item";
 import onairList from "./streaming/onairList.json";
 import cableList from "./streaming/cableList.json";
@@ -22,69 +23,62 @@ const OPEN_URL_LIST = [
   "TV조선2",
 ];
 
-const OnAirComponent = ({
-  index,
-  onSpotlightDown,
-  onSpotlightUp,
-  onClick,
-  streaming,
-}) => {
-  return (
-    <Item
-      key={`onair_${index}`}
-      onSpotlightDown={() => onSpotlightDown(index)}
-      onSpotlightUp={() => onSpotlightUp(index)}
-      onClick={() => onClick(index)}
-      className={`onairItem onairItem_${index}`}
-    >
-      {streaming.name}
-    </Item>
-  );
-};
+const OnAirComponent = React.memo(
+  ({ index, onSpotlightDown, onSpotlightUp, onClick, streaming }) => {
+    return (
+      <Item
+        key={`onair_${index}`}
+        onSpotlightDown={() => onSpotlightDown(index)}
+        onSpotlightUp={() => onSpotlightUp(index)}
+        onClick={() => onClick(index)}
+        className={`onairItem onairItem_${index}`}
+      >
+        {streaming.name}
+      </Item>
+    );
+  },
+  () => true
+);
 
-const CableComponent = ({
-  index,
-  onSpotlightDown,
-  onSpotlightUp,
-  onClick,
-  streaming,
-}) => {
-  return (
-    <Item
-      key={`cable_${index}`}
-      onSpotlightDown={() => onSpotlightDown(index)}
-      onSpotlightUp={() => onSpotlightUp(index)}
-      onClick={() => onClick(index)}
-      className={`cableItem cableItem_${index}`}
-    >
-      {streaming.name}
-    </Item>
-  );
-};
+const CableComponent = React.memo(
+  ({ index, onSpotlightDown, onSpotlightUp, onClick, streaming }) => {
+    return (
+      <Item
+        key={`cable_${index}`}
+        onSpotlightDown={() => onSpotlightDown(index)}
+        onSpotlightUp={() => onSpotlightUp(index)}
+        onClick={() => onClick(index)}
+        className={`cableItem cableItem_${index}`}
+      >
+        {streaming.name}
+      </Item>
+    );
+  },
+  () => true
+);
 
-const HomeshoppingComponent = ({
-  index,
-  onSpotlightDown,
-  onSpotlightUp,
-  onClick,
-  streaming,
-}) => {
-  return (
-    <Item
-      key={`homeshopping_${index}`}
-      onSpotlightDown={() => onSpotlightDown(index)}
-      onSpotlightUp={() => onSpotlightUp(index)}
-      onClick={() => onClick(index)}
-      className={`homeshoppingItem homeshoppingItem_${index}`}
-    >
-      {streaming.name}
-    </Item>
-  );
-};
+const HomeshoppingComponent = React.memo(
+  ({ index, onSpotlightDown, onSpotlightUp, onClick, streaming }) => {
+    return (
+      <Item
+        key={`homeshopping_${index}`}
+        onSpotlightDown={() => onSpotlightDown(index)}
+        onSpotlightUp={() => onSpotlightUp(index)}
+        onClick={() => onClick(index)}
+        className={`homeshoppingItem homeshoppingItem_${index}`}
+      >
+        {streaming.name}
+      </Item>
+    );
+  },
+  () => true
+);
 
-const SpottableOnAirComponent = Spottable(OnAirComponent);
-const SpottableCableComponent = Spottable(CableComponent);
-const SpottableHomeshoppingComponent = Spottable(HomeshoppingComponent);
+const SpottableOnAirComponent = Spottable(React.memo(OnAirComponent));
+const SpottableCableComponent = Spottable(React.memo(CableComponent));
+const SpottableHomeshoppingComponent = Spottable(
+  React.memo(HomeshoppingComponent)
+);
 
 const Main = () => {
   const streamingItemList = useRef([]);
