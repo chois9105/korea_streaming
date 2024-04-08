@@ -172,9 +172,8 @@ const Main = () => {
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickCable(index)}
               className="cableItem"
-            >
-              {streaming.name}
-            </SpottableCableComponent>
+              streaming={streaming}
+            />
           ))}
         </Scroller>
       </div>
@@ -187,9 +186,8 @@ const Main = () => {
               onSpotlightUp={() => onSpotlightUp(index)}
               onClick={() => onClickHomeshopping(index)}
               className="homeshoppingItem"
-            >
-              {streaming.name}
-            </SpottableHomeshoppingComponent>
+              streaming={streaming}
+            />
           ))}
         </Scroller>
       </div>
