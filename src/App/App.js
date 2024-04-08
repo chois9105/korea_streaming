@@ -1,3 +1,4 @@
+import SpotlightRootDecorator from "@enact/spotlight/SpotlightRootDecorator";
 import kind from "@enact/core/kind";
 import "./attachErrorHandler";
 import Main from "../views/Main";
