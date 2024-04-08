@@ -36,7 +36,10 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
-    Spotlight.focus("onair_0", { enterTo: "topmost", toOuterContainer: true });
+    Spotlight.focus("onair_1", {
+      enterTo: "default-element",
+      toOuterContainer: true,
+    });
   }, []);
 
   const onSpotlightUp = (index) => {};
