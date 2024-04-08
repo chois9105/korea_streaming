@@ -1,4 +1,3 @@
-import Scroller from "@enact/sandstone/Scroller";
 import Item from "@enact/sandstone/Item";
 import onairList from "./streaming/onairList.json";
 import cableList from "./streaming/cableList.json";
@@ -37,7 +36,7 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
     streamingItemList.current[0].focus();
-    Spotlight.focus("onair_1", { enterTo: "default-element" });
+    Spotlight.focus("onair_0", { enterTo: "default-element" });
   }, []);
 
   const onSpotlightUp = (index) => {};
@@ -84,52 +83,46 @@ const Main = () => {
   return (
     <div class="container" style={{ display: "flex", height: "100vh" }}>
       <div class="column" style={{ flex: 1 }}>
-        <Scroller style={{ backgroundColor: "black" }}>
-          {onairList.map((streaming, index) => (
-            <Item
-              key={`onair_${index}`}
-              spotlightId={`onair_${index}`}
-              onSpotlightDown={() => onSpotlightDown(index)}
-              onSpotlightUp={() => onSpotlightUp(index)}
-              onClick={() => onClickOnair(index)}
-              className="onairItem"
-            >
-              {streaming.name}
-            </Item>
-          ))}
-        </Scroller>
+        {onairList.map((streaming, index) => (
+          <Item
+            key={`onair_${index}`}
+            spotlightId={`onair_${index}`}
+            onSpotlightDown={() => onSpotlightDown(index)}
+            onSpotlightUp={() => onSpotlightUp(index)}
+            onClick={() => onClickOnair(index)}
+            className="onairItem"
+          >
+            {streaming.name}
+          </Item>
+        ))}
       </div>
       <div class="column" style={{ flex: 1 }}>
-        <Scroller style={{ backgroundColor: "black" }}>
-          {cableList.map((streaming, index) => (
-            <Item
-              key={`cable_${index}`}
-              spotlightId={`cable_${index}`}
-              onSpotlightDown={() => onSpotlightDown(index)}
-              onSpotlightUp={() => onSpotlightUp(index)}
-              onClick={() => onClickCable(index)}
-              className="cableItem"
-            >
-              {streaming.name}
-            </Item>
-          ))}
-        </Scroller>
+        {cableList.map((streaming, index) => (
+          <Item
+            key={`cable_${index}`}
+            spotlightId={`cable_${index}`}
+            onSpotlightDown={() => onSpotlightDown(index)}
+            onSpotlightUp={() => onSpotlightUp(index)}
+            onClick={() => onClickCable(index)}
+            className="cableItem"
+          >
+            {streaming.name}
+          </Item>
+        ))}
       </div>
       <div class="column" style={{ flex: 1 }}>
-        <Scroller style={{ backgroundColor: "black" }}>
-          {homeshoppingList.map((streaming, index) => (
-            <Item
-              key={`homeshopping_${index}`}
-              spotlightId={`homeshopping_${index}`}
-              onSpotlightDown={() => onSpotlightDown(index)}
-              onSpotlightUp={() => onSpotlightUp(index)}
-              onClick={() => onClickHomeshopping(index)}
-              className="homeshoppingItem"
-            >
-              {streaming.name}
-            </Item>
-          ))}
-        </Scroller>
+        {homeshoppingList.map((streaming, index) => (
+          <Item
+            key={`homeshopping_${index}`}
+            spotlightId={`homeshopping_${index}`}
+            onSpotlightDown={() => onSpotlightDown(index)}
+            onSpotlightUp={() => onSpotlightUp(index)}
+            onClick={() => onClickHomeshopping(index)}
+            className="homeshoppingItem"
+          >
+            {streaming.name}
+          </Item>
+        ))}
       </div>
     </div>
   );
