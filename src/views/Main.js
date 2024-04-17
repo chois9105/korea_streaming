@@ -21,27 +21,8 @@ const OPEN_URL_LIST = [
   "TV조선2",
 ];
 
-const AA = ({ index, onSpotlightDown, onSpotlightUp, onClick, name }) => {
-  return (
-    <Item
-      onSpotlightDown={() => onSpotlightDown(index)}
-      onSpotlightUp={() => onSpotlightUp(index)}
-      onClick={() => onClick(index)}
-      className="onairItem"
-    >
-      {name}
-    </Item>
-  );
-};
-
-const SpottableAAComponent = Spottable(AA);
-
 const Main = () => {
-  const streamingItemList = useRef([]);
-  Spotlight.focus(".onairItem", {
-    enterTo: "default-element",
-    toOuterContainer: true,
-  });
+  const streamingItemList = useRef([]);  
 
   useEffect(() => {
     const onairItemList = document.getElementsByClassName("onairItem");
@@ -54,7 +35,15 @@ const Main = () => {
       ...cableItemList,
       ...homeshoppingItemList,
     ];
-    streamingItemList.current[0].focus();
+
+    if(null === Spotlight.getCurrent()){
+      Spotlight.focus(".onairItem", {
+        enterTo: "last-focused",
+      });
+      
+      streamingItemList.current[0].focus();
+    }
+    
   }, []);
 
   const openURL = (a) => {
