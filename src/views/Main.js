@@ -36,14 +36,12 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
 
-    if(null === Spotlight.getCurrent()){
-      Spotlight.focus(".onairItem", {
-        enterTo: "last-focused",
-      });
+    Spotlight.focus(".onairItem", {
+      enterTo: "last-focused",
+    });
 
-      streamingItemList.current[0].focus();
-    }
-    
+    streamingItemList.current[0].focus();
+
   }, []);
 
   const openURL = (a) => {
