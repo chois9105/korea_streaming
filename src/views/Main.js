@@ -36,9 +36,7 @@ const Main = () => {
       ...homeshoppingItemList,
     ];
 
-    Spotlight.focus(".onairItem", {
-      enterTo: "last-focused",
-    });
+    Spotlight.focus(".onairItem");
 
     streamingItemList.current[0].focus();
 
