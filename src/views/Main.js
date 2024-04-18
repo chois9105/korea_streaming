@@ -86,7 +86,7 @@ const Main = () => {
   return (
     <div
       class="container"
-      style={{ display: "flex", height: "100vh", backgroundColor: "black", paddingTop: "10vh" }}
+      style={{ display: "flex", height: "230vh", backgroundColor: "black", paddingTop: "10vh" }}
     >
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {onairList.map((streaming, index) => (
