@@ -40,7 +40,7 @@ const Main = () => {
       Spotlight.focus(".onairItem", {
         enterTo: "last-focused",
       });
-      
+
       streamingItemList.current[0].focus();
     }
     
@@ -86,7 +86,7 @@ const Main = () => {
   return (
     <div
       class="container"
-      style={{ display: "flex", height: "100vh", backgroundColor: "black" }}
+      style={{ display: "flex", height: "100vh", backgroundColor: "black", paddingTop: "10vh" }}
     >
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {onairList.map((streaming, index) => (
