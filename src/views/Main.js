@@ -99,8 +99,6 @@ const Main = () => {
             {streaming.name}
           </Item>
         ))}
-      </div>
-      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {cableList.map((streaming, index) => (
           <Item
             key={`cable_${index}`}
@@ -111,8 +109,6 @@ const Main = () => {
             {streaming.name}
           </Item>
         ))}
-      </div>
-      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {homeshoppingList.map((streaming, index) => (
           <Item
             key={`homeshopping_${index}`}
@@ -123,6 +119,34 @@ const Main = () => {
             {streaming.name}
           </Item>
         ))}
+      </div>
+      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
+        {/* 
+        {cableList.map((streaming, index) => (
+          <Item
+            key={`cable_${index}`}
+            spotlightId={`cable_${index}`}
+            onClick={() => onClickCable(index)}
+            className="cableItem"
+          >
+            {streaming.name}
+          </Item>
+        ))}
+        */}
+      </div>
+      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
+        {/* 
+        {homeshoppingList.map((streaming, index) => (
+          <Item
+            key={`homeshopping_${index}`}
+            spotlightId={`homeshopping_${index}`}
+            onClick={() => onClickHomeshopping(index)}
+            className="homeshoppingItem"
+          >
+            {streaming.name}
+          </Item>
+        ))}
+        */}
       </div>
     </div>
   );
