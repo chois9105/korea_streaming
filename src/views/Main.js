@@ -91,7 +91,7 @@ const Main = () => {
           <Item
             key={`onair_${index}`}
             spotlightId={`onair_${index}`}
-            //onClick={() => onClickOnair(index)}
+            onClick={() => onClickOnair(index)}
             className="onairItem"
           >
             {streaming.name}
@@ -101,7 +101,7 @@ const Main = () => {
           <Item
             key={`cable_${index}`}
             spotlightId={`cable_${index}`}
-            //onClick={() => onClickCable(index)}
+            onClick={() => onClickCable(index)}
             className="cableItem"
           >
             {streaming.name}
@@ -111,7 +111,7 @@ const Main = () => {
           <Item
             key={`homeshopping_${index}`}
             spotlightId={`homeshopping_${index}`}
-            //onClick={() => onClickHomeshopping(index)}
+            onClick={() => onClickHomeshopping(index)}
             className="homeshoppingItem"
           >
             {streaming.name}
