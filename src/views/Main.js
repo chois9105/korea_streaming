@@ -89,7 +89,7 @@ const Main = () => {
         backgroundColor: "black",
       }}
     >
-      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
+      <div class="column" style={{ width: "45%", backgroundColor: "black" }}>
         {onairList.map((streaming, index) => (
           <Item
             key={`onair_${index}`}
@@ -124,7 +124,7 @@ const Main = () => {
           </Item>
         ))}
       </div>
-      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
+      <div class="column" style={{ width: "52%", backgroundColor: "black" }}>
         {/* 
         {cableList.map((streaming, index) => (
           <Item
@@ -132,20 +132,6 @@ const Main = () => {
             spotlightId={`cable_${index}`}
             onClick={() => onClickCable(index)}
             className="cableItem"
-          >
-            {streaming.name}
-          </Item>
-        ))}
-        */}
-      </div>
-      <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
-        {/* 
-        {homeshoppingList.map((streaming, index) => (
-          <Item
-            key={`homeshopping_${index}`}
-            spotlightId={`homeshopping_${index}`}
-            onClick={() => onClickHomeshopping(index)}
-            className="homeshoppingItem"
           >
             {streaming.name}
           </Item>
