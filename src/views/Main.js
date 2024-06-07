@@ -22,7 +22,7 @@ const OPEN_URL_LIST = [
 ];
 
 const Main = () => {
-  const streamingItemList = useRef([]);  
+  const streamingItemList = useRef([]);
 
   useEffect(() => {
     const onairItemList = document.getElementsByClassName("onairItem");
@@ -41,7 +41,6 @@ const Main = () => {
     });
 
     streamingItemList.current[0].focus();
-
   }, []);
 
   const openURL = (a) => {
@@ -84,7 +83,12 @@ const Main = () => {
   return (
     <div
       class="container"
-      style={{ display: "flex", height: "230vh", backgroundColor: "black", paddingTop: "10vh" }}
+      style={{
+        display: "flex",
+        height: "230vh",
+        backgroundColor: "black",
+        paddingTop: "10vh",
+      }}
     >
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
         {onairList.map((streaming, index) => (
@@ -93,6 +97,7 @@ const Main = () => {
             spotlightId={`onair_${index}`}
             onClick={() => onClickOnair(index)}
             className="onairItem"
+            style={{ height: "200px", border: "1px solid white" }}
           >
             {streaming.name}
           </Item>
