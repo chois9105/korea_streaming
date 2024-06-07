@@ -87,7 +87,6 @@ const Main = () => {
         display: "flex",
         height: "230vh",
         backgroundColor: "black",
-        paddingTop: "10vh",
       }}
     >
       <div class="column" style={{ flex: 1, backgroundColor: "black" }}>
@@ -97,7 +96,7 @@ const Main = () => {
             spotlightId={`onair_${index}`}
             onClick={() => onClickOnair(index)}
             className="onairItem"
-            style={{ height: "200px", border: "1px solid white" }}
+            style={{ height: "180px", border: "1px solid white" }}
           >
             {streaming.name}
           </Item>
@@ -108,6 +107,7 @@ const Main = () => {
             spotlightId={`cable_${index}`}
             onClick={() => onClickCable(index)}
             className="cableItem"
+            style={{ height: "180px", border: "1px solid white" }}
           >
             {streaming.name}
           </Item>
@@ -118,6 +118,7 @@ const Main = () => {
             spotlightId={`homeshopping_${index}`}
             onClick={() => onClickHomeshopping(index)}
             className="homeshoppingItem"
+            style={{ height: "180px", border: "1px solid white" }}
           >
             {streaming.name}
           </Item>
