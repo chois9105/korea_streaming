@@ -81,14 +81,7 @@ const Main = () => {
   };
 
   return (
-    <div
-      class="container"
-      style={{
-        display: "flex",
-        height: "230vh",
-        backgroundColor: "black",
-      }}
-    >
+    <div class="container">
       <div class="column" style={{ width: "45%", backgroundColor: "black" }}>
         {onairList.map((streaming, index) => (
           <Item
@@ -96,7 +89,7 @@ const Main = () => {
             spotlightId={`onair_${index}`}
             onClick={() => onClickOnair(index)}
             className="onairItem"
-            style={{ height: "180px", border: "1px solid white" }}
+            style={{ height: "170px", border: "1px solid white" }}
           >
             {streaming.name}
           </Item>

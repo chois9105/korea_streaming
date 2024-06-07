@@ -3,9 +3,9 @@ import ThemeDecorator from "@enact/sandstone/ThemeDecorator";
 import "./attachErrorHandler";
 import Main from "../views/Main";
 import css from "./App.module.less";
-import SpotlightContainerDecorator from '@enact/spotlight/SpotlightContainerDecorator';
+import SpotlightContainerDecorator from "@enact/spotlight/SpotlightContainerDecorator";
 
-const Container = SpotlightContainerDecorator('div');
+const Container = SpotlightContainerDecorator("div");
 
 const App = kind({
   name: "App",
@@ -14,10 +14,12 @@ const App = kind({
     className: "app",
   },
   render: (props) => {
-    return 	<Container {...props}>
-      <Main />
-</Container>
-  }
+    return (
+      <Container {...props}>
+        <Main />
+      </Container>
+    );
+  },
 });
 
 export default ThemeDecorator(App);
