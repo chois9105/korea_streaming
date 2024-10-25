@@ -6,11 +6,10 @@ import Spottable from "@enact/spotlight/Spottable";
 import Spotlight from "@enact/spotlight";
 import { useEffect, useRef } from "react";
 
-const M3U8_LIST = ["KBS1", "KBS2"];
+const M3U8_LIST = ["KBS1", "KBS2", "MBC"];
 const OPEN_URL_LIST = [
   "SBS",
   "MBN",
-  "MBC",
   "채널A",
   "연합뉴스TV",
   "EBS1",
